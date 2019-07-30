@@ -34,5 +34,9 @@ module Auth
 
     config.autoload_paths += %W[#{Rails.root}/lib]
     config.eager_load_paths << "#{Rails.root}/lib"
+
+    config.generators do |g|
+      g.orm :mongoid
+    end
   end
 end
