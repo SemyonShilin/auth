@@ -10,5 +10,5 @@ before_install:
   - mongo auth_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 
 script:
-  - bundle exec rubocop
+  - bundle exec rubocop --config .quality/.rubocop.yml
   - bundle exec rspec
