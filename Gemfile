@@ -33,10 +33,13 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
   gem 'webmock'
 end
 
 group :development do
+  gem 'rubocop'
+  gem 'rubocop-rspec'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -49,3 +52,6 @@ gem 'mongoid', '~> 6.1.0'
 gem 'dry-validation', '~> 0.13'
 gem 'reform', '>= 2.2.0'
 gem 'reform-rails', git: 'git@github.com:trailblazer/reform-rails.git'
+
+gem 'bunny'
+gem 'sneakers'
