@@ -51,7 +51,7 @@ gem 'mongoid', '~> 6.1.0'
 
 gem 'dry-validation', '~> 0.13'
 gem 'reform', '>= 2.2.0'
-gem 'reform-rails', git: 'git@github.com:trailblazer/reform-rails.git'
+gem 'reform-rails', github: 'trailblazer/reform-rails'
 
 gem 'bunny'
 gem 'sneakers'

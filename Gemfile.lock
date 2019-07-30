@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:trailblazer/reform-rails.git
+  remote: https://github.com/trailblazer/reform-rails.git
   revision: 4ad30a8042310c1f5fee75e24c047ae776c054de
   specs:
     reform-rails (0.2.0.rc2)
