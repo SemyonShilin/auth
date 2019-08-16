@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+  - 2.6.2
+
+services:
+  - mongodb
+
+before_install:
+  - gem update --system
+  - mongo auth_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+
+script:
+  - bundle exec rubocop --config .quality/.rubocop.yml
+  - bundle exec rspec
