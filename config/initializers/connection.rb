@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Rabbit
   class Connection
     include Singleton
@@ -5,7 +7,7 @@ module Rabbit
     attr_reader :config
 
     def initialize
-      @config  = Rails.application.credentials.rabbitmq
+      @config = Rails.application.credentials.rabbitmq
     end
 
     def active
