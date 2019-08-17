@@ -4,6 +4,7 @@ module Clients
   class SignUp < Base
     def call
       if form.persist
+        publish
         SignIn.call(**params)
       else
         form
@@ -24,6 +25,13 @@ module Clients
 
     def build_resource
       ::Client.new
+    end
+
+    def publish
+      ::Rabbit::Publisher.call(
+        exchange: 'clients',
+        message: { client: form.for_queue }
+      )
     end
   end
 end

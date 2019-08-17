@@ -1,9 +1,16 @@
 language: ruby
 rvm:
-  - 2.6.2
+  - 2.6.3
+
+dist: xenial
+addons:
+  apt:
+    packages:
+      - rabbitmq-server
 
 services:
   - mongodb
+  - rabbitmq
 
 before_install:
   - gem update --system
