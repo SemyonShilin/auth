@@ -3,16 +3,19 @@
 module Rabbit
   class Publisher < Base
     def call
+      logger.info("Publishing message start: #{message}")
       publish
+      logger.info("Publishing message end: #{message}")
     end
 
     private
 
-    attr_reader :exchange, :message
+    attr_reader :exchange, :message, :logger
 
-    def initialize(exchange:, message:)
+    def initialize(exchange:, message:, logger: Rails.logger)
       @exchange = exchange
       @message  = message
+      @logger   = logger
     end
 
     def channel
