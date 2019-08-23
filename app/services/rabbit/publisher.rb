@@ -27,7 +27,7 @@ module Rabbit
     end
 
     def publish
-      x = channel.fanout(exchange)
+      x = channel.fanout(exchange, durable: true)
       x.publish(message.to_json)
     end
   end

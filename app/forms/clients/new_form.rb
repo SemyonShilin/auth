@@ -10,15 +10,24 @@ module Clients
     property :password_confirmation, type: ::Types::String
 
     validation do
-      required(:email).filled
-      required(:login).filled
+      configure do
+        config.messages_file = Rails.root + 'config/locales/dry_validation.yml'
+        option :record
+
+        def unique?(attr_name, value)
+          ::Client.where(attr_name => value).empty?
+        end
+      end
+
+      required(:email).filled(unique?: :email)
+      required(:login).filled(unique?: :login)
 
       required(:password).filled(min_size?: 6).confirmation
     end
 
     def for_queue
       {
-        id: model.id,
+        external_id: model.id.to_s,
         login: model.login,
         email: model.email
       }
