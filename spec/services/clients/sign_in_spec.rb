@@ -11,7 +11,7 @@ RSpec.describe Clients::SignIn do
       let(:params) { { login: client.login, password: client.password } }
       let(:hash) { JsonWebToken.decode(invoke.token) }
 
-      it { expect(hash[:client_id]['$oid']).to eq(client.id.to_s) }
+      it { expect(hash[:client_id]).to eq(client.id.to_s) }
       it { expect(hash).to have_key(:client_id) }
     end
 
