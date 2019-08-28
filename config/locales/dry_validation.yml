@@ -1,0 +1,12 @@
+en:
+  errors:
+    unique?:
+      arg:
+        default: "value not uniq"
+        range: "value not uniq"
+
+      value:
+        string:
+          arg:
+            default: "value not uniq"
+            range: "value not uniq"

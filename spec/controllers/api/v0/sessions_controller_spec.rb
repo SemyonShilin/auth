@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Api::V0::SessionsController, type: :controller do
+  let(:client) { create(:client) }
+
   describe '#create' do
-    let(:client) { create(:client) }
     before { post :create, params: params }
 
     context 'client sign_up success' do
@@ -32,6 +33,38 @@ RSpec.describe Api::V0::SessionsController, type: :controller do
         }
       end
 
+      it { expect(response).to have_http_status(401) }
+    end
+  end
+
+  describe '#check' do
+    let(:params) do
+      {
+        client: {
+          login: client.login,
+          password: client.password
+        }
+      }
+    end
+
+    before { post :create, params: params }
+    before do
+      @request.set_header('Authorization', token)
+      get :check
+    end
+
+    context 'with valid token' do
+      let(:token) { response.headers['Authorization'] }
+      it { expect(response).to have_http_status(:ok) }
+    end
+
+    context 'with invalid token' do
+      let(:token) { response.headers['Authorization'].chop }
+      it { expect(response).to have_http_status(401) }
+    end
+
+    context 'with blank token' do
+      let(:token) { '' }
       it { expect(response).to have_http_status(401) }
     end
   end

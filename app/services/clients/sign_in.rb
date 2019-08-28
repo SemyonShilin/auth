@@ -30,7 +30,7 @@ module Clients
     end
 
     def generate_token
-      JsonWebToken.encode(client_id: client.id)
+      JsonWebToken.encode(client_id: client.id.to_s)
     end
 
     def put_token

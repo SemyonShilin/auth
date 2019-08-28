@@ -17,7 +17,7 @@ RSpec.describe Clients::SignUp do
       end
       let(:hash) { JsonWebToken.decode(invoke.token) }
 
-      it { expect(hash[:client_id]['$oid']).to eq(Client.last.id.to_s) }
+      it { expect(hash[:client_id]).to eq(Client.last.id.to_s) }
       it { expect(hash).to have_key(:client_id) }
     end
 

@@ -8,10 +8,14 @@ module Api
 
         if client&.errors&.empty?
           response.headers['Authorization'] = "Bearer #{client.token}"
-          render status: 200
+          render status: :ok
         else
-          render status: 401
+          render status: :unauthorized
         end
+      end
+
+      def check
+        render status: Clients::Check.call(headers: request.headers) ? :ok : :unauthorized
       end
 
       private
